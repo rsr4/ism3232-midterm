@@ -10,7 +10,7 @@ def get_seat_discount(seats: int, education: bool = False) -> float:
     elif seats >= 10:
         return 0.07
     else:
-        0.0
+        return 0.0
 
 def calculate_license_total(seat_price: float, seats: int, education: bool = False) -> float:
     discounted_total = calculate_license_cost( seat_price, seats) * (1 - get_seat_discount(seats, education))
@@ -26,7 +26,7 @@ def needs_contract_review(total: float) -> bool:
     else:
         return False
 
-def gets_trainer(seats: int, total: float) -> bool:
+def get_trainer(seats: int, total: float) -> bool:
     if seats >= 25 or total > 3000:
         return True
     else:
@@ -55,10 +55,9 @@ def largest_license(orders: list) -> str:
             order['seats'],
             order['education']
         )
-
-    if license_total > largest_total:
-        largest_total = license_total
-        largest_company = order['company']
+        if license_total > largest_total:
+                largest_total = license_total
+                largest_company = order['company']
 
     return largest_company
 
@@ -73,7 +72,7 @@ def format_license_line(company: str, total: float, contract_review: bool, train
     else:
         trainer_text = 'no'
 
-    return print(f'{company}: ${total:.2f} | Contract Review: {review_text} | Trainer: {trainer_text}')
+    return f'{company}: ${total:.2f} | Contract Review: {review_text} | Trainer: {trainer_text}'
 
 
 

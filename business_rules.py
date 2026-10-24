@@ -72,7 +72,7 @@ def format_license_line(company: str, total: float, contract_review: bool, train
     else:
         trainer_text = 'no'
 
-    return f'{company}: ${total:.2f} | Contract Review: {review_text} | Trainer: {trainer_text}'
+    return f'{company}: ${total:,.2f} | Contract Review: {review_text} | Trainer: {trainer_text}'
 
 
 

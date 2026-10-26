@@ -11,37 +11,40 @@ orders = [
 
 from business_rules import *
 
-print('Cloudstep Software - Order Report')
+print("Cloudstep Software - Order Report")
 
 for order in orders:
-    license_total = calculate_license_total(order['seat_price'], order['seats'], order['education'])
+    license_total = calculate_license_total(
+        order["seat_price"], order["seats"], order["education"]
+    )
     needs_review = needs_contract_review(license_total)
-    trainer = get_trainer(order['seats'], license_total)
+    trainer = get_trainer(order["seats"], license_total)
 
-    print(format_license_line(order['company'], license_total, needs_review, trainer))
+    print(format_license_line(order["company"], license_total, needs_review, trainer))
 
-print(f'Orders: {len(orders)}')
-print(f'Total Licensed: ${total_licensed(orders):.2f}')
-print(f'Average License: ${total_licensed(orders) / len(orders):.2f}')
-print(f'Largest License total: {largest_license(orders)}')
+print(f"Orders: {len(orders)}")
+print(f"Total Licensed: ${total_licensed(orders):.2f}")
+print(f"Average License: ${total_licensed(orders) / len(orders):.2f}")
+print(f"Largest License total: {largest_license(orders)}")
 total_reviews = 0
 for order in orders:
-    
-    license_total = calculate_license_total(order['seat_price'], order['seats'], order['education'])
+    license_total = calculate_license_total(
+        order["seat_price"], order["seats"], order["education"]
+    )
     needs_review = needs_contract_review(license_total)
 
     if needs_review == True:
         total_reviews += 1
 
-print(f'Contract reviews needed: {total_reviews}')
+print(f"Contract reviews needed: {total_reviews}")
 total_trainer = 0
 for order in orders:
-
-    license_total = calculate_license_total(order['seat_price'], order['seats'], order['education'])
-    trainer_need = get_trainer(order['seats'], license_total)
+    license_total = calculate_license_total(
+        order["seat_price"], order["seats"], order["education"]
+    )
+    trainer_need = get_trainer(order["seats"], license_total)
 
     if trainer_need == True:
         total_trainer += 1
 
-print(f'Trainers assigned: {total_trainer}')
-
+print(f"Trainers assigned: {total_trainer}")
